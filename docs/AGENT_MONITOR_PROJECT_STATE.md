@@ -1,10 +1,10 @@
 # Agent Monitor — project checkpoint
 
-## Checkpoint initial — 2026-11-08 — V1 locale prête à reprendre
+## Checkpoint — 2026-11-08 — V1 locale enrichie, DEMO publique
 
 ### État actuel
 
-Dépôt séparé local : `/Users/ssg/agent-monitor`, branche `main`. La V1 est une PWA statique responsive, privée par conception et strictement en lecture seule. Elle fonctionne avec un snapshot de démonstration marqué `DEMO`; elle ne lit aucun runtime réel et ne publie rien dans le cloud.
+Dépôt séparé local : `/Users/ssg/agent-monitor`, branche `main`, publié dans `https://github.com/f-duck/agent-monitor`. La V1 est une PWA statique responsive, strictement en lecture seule, avec un jeu de données DEMO représentatif publié sur GitHub Pages à `https://f-duck.github.io/agent-monitor/`. Elle ne lit aucun runtime réel.
 
 ### Dernier commit validé
 
@@ -19,12 +19,14 @@ Commit local de reprise : le hash exact est celui de `git rev-parse HEAD` et est
 - Données de démonstration explicitement signalées à l'écran et dans le snapshot.
 - Tests locaux sans dépendance externe.
 - Documentation d'architecture et de sécurité.
+- Jeu de données DEMO enrichi : décisions, ordres vs exécutions, positions, portefeuilles Simulation/Paper, PnL, drawdown, budgets, quotas OpenAI/JEV/EODHD/Alpaca, diagnostics, alertes, commits et roadmap.
+- GitHub Pages configuré depuis `gh-pages`; le dépôt public ne contient que du code et des données fictives.
 
 ### Fichiers/modules
 
 - `dist/index.html`, `dist/styles.css`, `dist/app.js`, `dist/manifest.json` : PWA statique.
 - `schema/snapshot.schema.json`, `schema/demo-snapshot.json` : contrat et fixture DEMO.
-- `tests/test_snapshot.py` : contrôle du contrat, des valeurs indisponibles et des marqueurs UI.
+- `tests/test_snapshot.py` : contrôle du contrat, des données DEMO représentatives et des marqueurs UI.
 - `docs/ARCHITECTURE.md` : flux Mini → Intel → cloud → PWA et garde-fous.
 
 ### Décisions d'architecture

@@ -1,47 +1,99 @@
 {
   "schema_version": "1.0",
-  "snapshot_id": "demo-2026-11-08T21:45:00Z",
-  "generated_at": "2026-11-08T21:45:00Z",
+  "snapshot_id": "demo-2026-11-08T22:50:00Z",
+  "generated_at": "2026-11-08T22:50:00Z",
   "data_status": "DEMO",
-  "notice": "DEMONSTRATION DATA — not a live measurement",
+  "notice": "DEMONSTRATION DATA — representative only, not a live measurement",
   "agents": {
     "stock": {
       "name": "Agent Stock",
       "status": "RUNNING",
       "environment": "RESEARCH",
-      "last_seen_at": "2026-11-08T21:42:00Z",
+      "phase": "OVERNIGHT",
+      "last_seen_at": "2026-11-08T22:47:00Z",
       "health": "READ_ONLY / KILL ACTIVE",
-      "machine": "Intel — demonstration",
-      "release": "P17 — demonstration",
-      "alerts": ["Coverage live à mesurer", "Aucun ordre autorisé"]
+      "machine": "Intel — démonstration",
+      "release": "P17 sweep — fictif",
+      "cpu": "8%",
+      "memory": "420 MB",
+      "disk_free": "36 GB",
+      "freshness": "3 min",
+      "alerts": ["Couverture live à mesurer", "Aucun ordre autorisé"]
     },
     "crypto": {
       "name": "Agent Crypto",
-      "status": "UNKNOWN",
+      "status": "STALE",
       "environment": "PAPER",
-      "last_seen_at": null,
-      "health": "À synchroniser",
-      "machine": "Mini — non mesuré",
-      "release": "Indisponible",
-      "alerts": ["Donnée non disponible dans la V1 locale"]
+      "phase": "PAPER_CAMPAIGN",
+      "last_seen_at": "2026-11-08T22:12:00Z",
+      "health": "Dernier signal ancien",
+      "machine": "Mini — démonstration",
+      "release": "forward-v1 — fictif",
+      "cpu": "18%",
+      "memory": "680 MB",
+      "disk_free": "112 GB",
+      "freshness": "38 min",
+      "alerts": ["Snapshot Mini en retard de 8 min"]
     }
   },
   "metrics": {
-    "net_pnl": {"value": null, "unit": "EUR", "status": "UNAVAILABLE", "reason": "Aucun outcome exécutable consolidé"},
-    "drawdown": {"value": null, "unit": "%", "status": "UNAVAILABLE", "reason": "Historique non connecté"},
-    "available_budget": {"value": null, "unit": "EUR", "status": "UNAVAILABLE", "reason": "Aucune source live"},
-    "openai_cost": {"value": null, "unit": "EUR", "status": "UNAVAILABLE", "reason": "Ledger non connecté"}
+    "net_pnl": {"label": "PnL net consolidé", "value": 184, "unit": "EUR", "status": "DEMO", "reason": "Simulation + Paper fictifs"},
+    "drawdown": {"label": "Drawdown maximum", "value": -3.8, "unit": "%", "status": "DEMO", "reason": "Fenêtre fictive de 30 jours"},
+    "available_budget": {"label": "Budget disponible", "value": 20870, "unit": "EUR", "status": "DEMO", "reason": "Cash synthétique"},
+    "committed_budget": {"label": "Capital engagé", "value": 49130, "unit": "EUR", "status": "DEMO", "reason": "Positions fictives"},
+    "ai_cost": {"label": "Coût OpenAI + JEV", "value": 12.84, "unit": "EUR", "status": "DEMO", "reason": "Ledger synthétique"}
   },
-  "decisions": [],
-  "orders": [],
-  "positions": [],
+  "portfolios": [
+    {"agent": "Agent Stock", "environment": "SIMULATION", "label": "Actions US · simulation", "total_value": 50000, "committed": 37550, "available": 12450, "pnl_net": -0.9},
+    {"agent": "Agent Crypto", "environment": "PAPER", "label": "Crypto · paper", "total_value": 20000, "committed": 11580, "available": 8420, "pnl_net": 2.4}
+  ],
+  "decisions": [
+    {"at": "2026-11-08T22:31:00Z", "agent": "Agent Stock", "environment": "RESEARCH", "symbol": "MSFT", "decision": "WAIT", "confidence": "71%", "rationale": "Signal positif mais preuve événementielle insuffisante"},
+    {"at": "2026-11-08T22:18:00Z", "agent": "Agent Crypto", "environment": "PAPER", "symbol": "BTC", "decision": "BUY", "confidence": "64%", "rationale": "Momentum favorable, taille plafonnée par le risque"},
+    {"at": "2026-11-08T21:52:00Z", "agent": "Agent Stock", "environment": "SIMULATION", "symbol": "AAPL", "decision": "SELL", "confidence": "58%", "rationale": "Drawdown intraday et coût d'exécution simulé"}
+  ],
+  "orders": [
+    {"id": "SIM-1042", "agent": "Agent Stock", "environment": "SIMULATION", "side": "BUY", "symbol": "MSFT", "quantity": 12, "order_price": 421.2, "executed_quantity": 12, "executed_price": 421.35, "status": "FILLED"},
+    {"id": "PAP-8821", "agent": "Agent Crypto", "environment": "PAPER", "side": "SELL", "symbol": "ETH", "quantity": 1.5, "order_price": 3420, "executed_quantity": 0.75, "executed_price": 3418, "status": "PARTIAL"},
+    {"id": "SIM-1041", "agent": "Agent Stock", "environment": "SIMULATION", "side": "BUY", "symbol": "AAPL", "quantity": 20, "order_price": 272.4, "executed_quantity": 0, "executed_price": null, "status": "REJECTED"}
+  ],
+  "positions": [
+    {"agent": "Agent Stock", "environment": "SIMULATION", "symbol": "MSFT", "asset_type": "ACTION", "quantity": 12, "avg_price": 421.35, "last_price": 424.1, "market_value": 5089, "pnl_net": 33},
+    {"agent": "Agent Stock", "environment": "SIMULATION", "symbol": "AAPL", "asset_type": "ACTION", "quantity": 40, "avg_price": 274.2, "last_price": 272.8, "market_value": 10912, "pnl_net": -56},
+    {"agent": "Agent Crypto", "environment": "PAPER", "symbol": "BTC", "asset_type": "CRYPTO", "quantity": 0.18, "avg_price": 64500, "last_price": 65720, "market_value": 11830, "pnl_net": 220},
+    {"agent": "Agent Crypto", "environment": "PAPER", "symbol": "ETH", "asset_type": "CRYPTO", "quantity": 2.4, "avg_price": 3340, "last_price": 3418, "market_value": 8203, "pnl_net": 187}
+  ],
+  "quotas": [
+    {"name": "OpenAI", "used": 184, "limit": 750, "unit": "appels/jour", "note": "24,5% · réserve restante fictive : 566"},
+    {"name": "JEV", "used": 62, "limit": 300, "unit": "appels/jour", "note": "20,7% · aucun dépassement"},
+    {"name": "EODHD", "used": 410, "limit": 50000, "unit": "unités", "note": "0,8% · autorité partagée fictive"},
+    {"name": "Alpaca", "used": 826, "limit": 3000, "unit": "requêtes/jour", "note": "27,5% · plafond maison"}
+  ],
+  "diagnostics": [
+    {"name": "SQLite runtime", "status": "OK", "detail": "integrity_check ok · 490 MB · démonstration"},
+    {"name": "Freshness Crypto", "status": "WARN", "detail": "Dernier snapshot il y a 38 min · seuil 30 min"},
+    {"name": "Exécution ordres", "status": "OK", "detail": "Désactivée · 0 ordre réel · kill switch actif"},
+    {"name": "Couverture marché Stock", "status": "WARN", "detail": "13,3% observée dans la fixture · mesure réelle requise"},
+    {"name": "Secrets exportés", "status": "OK", "detail": "Aucun secret dans le snapshot"}
+  ],
   "alerts": [
-    {"severity": "INFO", "title": "Mode démonstration", "detail": "Les chiffres réels ne sont pas encore branchés."},
-    {"severity": "GUARDRAIL", "title": "Lecture seule", "detail": "Aucune action de trading ou de runtime n'est disponible."}
+    {"severity": "WARN", "title": "Crypto périmé", "detail": "Le dernier snapshot Paper date de 38 minutes ; l'interface afficherait STALE en production."},
+    {"severity": "INFO", "title": "PnL démonstratif", "detail": "Le PnL consolide ici des positions Simulation et Paper fictives, jamais du Live."},
+    {"severity": "GUARDRAIL", "title": "Lecture seule", "detail": "Les ordres affichés sont des exemples ; aucun bouton ne peut trader ou redémarrer un runtime."},
+    {"severity": "GUARDRAIL", "title": "Valeurs manquantes explicites", "detail": "Une valeur non disponible sera affichée comme Indisponible, jamais remplacée par zéro."}
   ],
   "work": {
     "project": "Agent Monitor",
-    "phase": "V1 locale",
-    "roadmap": ["V1 interface + schéma + tests", "Mesurer l'extraction Mini", "Valider droits et quotas cloud", "Exporteurs lecture seule"]
+    "phase": "V1 locale enrichie",
+    "roadmap": [
+      {"title": "Interface + données DEMO", "detail": "Dashboard responsive et fixture représentative", "status": "DONE"},
+      {"title": "Mesurer l'extraction Mini", "detail": "CPU, RSS, I/O et SQLite sans installer de job", "status": "NEXT"},
+      {"title": "Valider droits et quotas cloud", "detail": "Cloudflare Free, WebAuthn et accès en lecture", "status": "OPEN"},
+      {"title": "Brancher les exporteurs", "detail": "Snapshot atomique et publication consolidée", "status": "OPEN"}
+    ],
+    "commits": [
+      {"sha": "1c47236", "title": "Initialize read-only Agent Monitor PWA", "scope": "V1 locale", "when": "08/11/2026"},
+      {"sha": "77d3583", "title": "Publish demo with GitHub Pages", "scope": "Publication", "when": "08/11/2026"}
+    ]
   }
 }
