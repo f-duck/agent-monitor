@@ -27,6 +27,7 @@ def main():
     assert "READ ONLY" in html
     assert "Portefeuilles" in html
     assert "Santé &amp; budgets" in html
+    assert "snapshot.json" in (ROOT / "dist/app.js").read_text()
     print("PASS: snapshot contract, representative demo data and UI markers")
 
 if __name__ == "__main__":

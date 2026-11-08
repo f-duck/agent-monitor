@@ -1,10 +1,10 @@
 # Agent Monitor — project checkpoint
 
-## Checkpoint — 2026-11-08 — V1 locale enrichie, DEMO publique
+## Checkpoint — 2026-11-09 — consolidateur local read-only, DEMO publique
 
 ### État actuel
 
-Dépôt séparé local : `/Users/ssg/agent-monitor`, branche `main`, publié dans `https://github.com/f-duck/agent-monitor`. La V1 est une PWA statique responsive, strictement en lecture seule, avec un jeu de données DEMO représentatif publié sur GitHub Pages à `https://f-duck.github.io/agent-monitor/`. Elle ne lit aucun runtime réel.
+Dépôt séparé local : `/Users/ssg/agent-monitor`, branche `main`, publié dans `https://github.com/f-duck/agent-monitor`. La PWA est une interface responsive strictement en lecture seule. GitHub Pages reste DEMO-only ; un consolidateur local accepte maintenant des snapshots Stock/Crypto réels sans réseau et produit un snapshot `LIVE_READ_ONLY` ou `STALE` hors du dépôt public.
 
 ### Dernier commit validé
 
@@ -21,12 +21,16 @@ Commit local de reprise : le hash exact est celui de `git rev-parse HEAD` et est
 - Documentation d'architecture et de sécurité.
 - Jeu de données DEMO enrichi : décisions, ordres vs exécutions, positions, portefeuilles Simulation/Paper, PnL, drawdown, budgets, quotas OpenAI/JEV/EODHD/Alpaca, diagnostics, alertes, commits et roadmap.
 - GitHub Pages configuré depuis `gh-pages`; le dépôt public ne contient que du code et des données fictives.
+- Consolidateur local `monitor/consolidate_snapshot.py` + CLI `scripts/consolidate_snapshot_v1.py` : validation de timestamps, statut `LIVE_READ_ONLY`/`STALE`/`UNAVAILABLE`, tagging par agent, absence de PnL consolidé trompeur et remplacement atomique.
+- PWA : essaie `snapshot.json` local en premier, puis retombe sur la fixture DEMO ; aucun `snapshot.json` réel n'est committé.
 
 ### Fichiers/modules
 
 - `dist/index.html`, `dist/styles.css`, `dist/app.js`, `dist/manifest.json` : PWA statique.
 - `schema/snapshot.schema.json`, `schema/demo-snapshot.json` : contrat et fixture DEMO.
 - `tests/test_snapshot.py` : contrôle du contrat, des données DEMO représentatives et des marqueurs UI.
+- `tests/test_consolidate_snapshot.py`, `tests/fixtures/*_status_v1.json` : tests locaux de fraîcheur, tagging, `UNAVAILABLE` et atomicité.
+- `docs/REAL_DATA_INGESTION.md` : procédure locale et interdiction de publication publique des données réelles.
 - `docs/ARCHITECTURE.md` : flux Mini → Intel → cloud → PWA et garde-fous.
 
 ### Décisions d'architecture
@@ -91,7 +95,7 @@ V1 : navigateur moderne, Python standard library uniquement pour le test et un s
 
 ### Exact immediate next action
 
-Après ce commit local, faire une mesure read-only bornée sur le Mini de l'extraction JSON minimale (CPU, RSS, durée, I/O et requêtes SQLite), sans installer de job et sans modifier Crypto ; documenter le résultat ici avant toute intégration réelle.
+Après ce commit local, valider les premiers vrais fichiers Stock/Crypto hors dépôt public, puis préparer le publisher Intel privé vers Cloudflare. Ne pas créer de ressource cloud, ne pas installer de scheduler et ne pas publier de données réelles avant validation de WebAuthn, redaction, quotas, rétention et accès privé.
 
 ### Reprise utile
 

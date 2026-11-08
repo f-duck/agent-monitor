@@ -1,0 +1,17 @@
+# Real-data local ingestion
+
+The local consolidator is intentionally separate from the Stock and Crypto runtimes. It performs no network access and writes only the requested output file.
+
+```sh
+cd /Users/ssg/agent-monitor
+python3 -B scripts/consolidate_snapshot_v1.py \
+  --stock /private/path/stock_status.json \
+  --crypto /private/path/crypto_status.json \
+  --output /private/path/snapshot.json
+```
+
+The default freshness window is 30 minutes. Use `--max-age-seconds` only for a measured test. If either source is missing a valid timestamp, the consolidated result is `UNAVAILABLE`; if one is older than the window, it is `STALE`. The consolidator never calculates a misleading cross-environment PnL or budget total: those values remain unavailable unless a future contract defines currency and environment aggregation.
+
+For a private local preview, place the generated `snapshot.json` beside the PWA assets. The browser tries `snapshot.json` first and falls back to the explicitly marked `DEMO` fixture. Do not commit or publish a real `snapshot.json`; the current GitHub Pages site is public and remains DEMO-only.
+
+The next integration step is an Intel-side, read-only publisher to a private Cloudflare endpoint after WebAuthn, redaction, quotas and retention are validated. No scheduler or cloud resource is created by this local tool.

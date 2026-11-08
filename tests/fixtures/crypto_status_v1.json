@@ -1,0 +1,22 @@
+{
+  "schema_version": "AGENT_CRYPTO_STATUS_V1",
+  "agent": "Agent Crypto",
+  "generated_at": "2026-11-09T09:55:00Z",
+  "source_release": "5565776d",
+  "status": "RUNNING",
+  "environment": "PAPER",
+  "phase": "PAPER_CAMPAIGN",
+  "freshness": "10 min",
+  "health": "AUTHORITY NONE",
+  "machine": "Mini",
+  "cpu": "18%",
+  "memory": "680 MB",
+  "disk_free": "112 GB",
+  "kpis": {"pnl_net": 45.5, "drawdown": -0.6, "portfolio_value": 10000, "available_budget": 9940, "committed_budget": 60, "ai_cost": 0.0047},
+  "decisions": [{"symbol": "BTCUSDT", "decision": "WAIT", "environment": "PAPER", "confidence": "64%"}],
+  "orders": [],
+  "positions": [{"symbol": "BTCUSDT", "quantity": 0.001, "market_value": 65}],
+  "quotas": [{"name": "JEV", "used": 18, "limit": 300, "unit": "calls/day"}],
+  "diagnostics": [{"name": "execution_authority", "status": "OK", "detail": "NONE"}],
+  "alerts": []
+}

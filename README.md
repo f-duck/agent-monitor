@@ -17,6 +17,8 @@ Ouvrir `http://127.0.0.1:4173` sur Mac. Les tests ne nécessitent aucune dépend
 python3 -B tests/test_snapshot.py
 ```
 
+Le consolidateur local Stock + Crypto est documenté dans `docs/REAL_DATA_INGESTION.md`. Il est read-only, sans réseau, et ne doit jamais écrire un vrai `snapshot.json` dans le dépôt public.
+
 ## Architecture approuvée
 
 Le Mini produit périodiquement un petit snapshot local remplaçable atomiquement. L'Intel récupère le snapshot, ajoute son état Stock, valide le schéma et publie un snapshot consolidé vers un service serverless. La PWA lit uniquement la dernière vue consolidée. Aucun serveur permanent supplémentaire ne doit tourner sur le Mini ou l'Intel.

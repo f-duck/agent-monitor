@@ -1,0 +1,23 @@
+{
+  "schema_version": "AGENT_STOCK_STATUS_V1",
+  "agent": "Agent Stock",
+  "generated_at": "2026-11-09T10:00:00Z",
+  "exporter": "monitor_status_export_v1",
+  "status": "RUNNING",
+  "environment": "RESEARCH",
+  "release": "fe834ab",
+  "phase": "PREOPEN",
+  "freshness": "5 min",
+  "health": "READ_ONLY / KILL ACTIVE",
+  "machine": "Intel",
+  "cpu": "8%",
+  "memory": "420 MB",
+  "disk_free": "36 GB",
+  "kpis": {"pnl_net": null, "drawdown": null, "portfolio_value": null, "available_budget": null, "committed_budget": null, "ai_cost": 0},
+  "decisions": [{"symbol": "MSFT", "decision": "WAIT", "environment": "RESEARCH", "confidence": "71%"}],
+  "orders": [],
+  "positions": [],
+  "quotas": [{"name": "OpenAI", "used": 0, "limit": 750, "unit": "calls/day"}],
+  "diagnostics": [{"name": "runtime.sqlite3", "status": "OK", "detail": "integrity_check ok"}],
+  "alerts": []
+}
