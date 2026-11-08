@@ -54,6 +54,7 @@ Commit local de reprise : le hash exact est celui de `git rev-parse HEAD` et est
 - `python3 -B tests/test_snapshot.py` : PASS au moment de ce checkpoint.
 - Recherche conversationnelle : architecture Cloudflare serverless + passkey Face ID approuvée, mais les quotas doivent être revérifiés officiellement avant création de ressource.
 - Aucun test live, appel payant, ordre, déploiement, publication cloud, redémarrage ou changement de quota effectué.
+- Exporteur Stock réel validé manuellement sur Intel le 2026-11-08 : sortie de 7 742 octets, exécution interne 13,8 ms, statut `RUNNING`, environnement `RESEARCH`, 0 appel IA, 0 écriture runtime, 0 réseau et aucun job périodique. Le fichier reste hors du dépôt public.
 
 ### Incidents / limitations
 
@@ -95,7 +96,7 @@ V1 : navigateur moderne, Python standard library uniquement pour le test et un s
 
 ### Exact immediate next action
 
-Après ce commit local, valider les premiers vrais fichiers Stock/Crypto hors dépôt public, puis préparer le publisher Intel privé vers Cloudflare. Ne pas créer de ressource cloud, ne pas installer de scheduler et ne pas publier de données réelles avant validation de WebAuthn, redaction, quotas, rétention et accès privé.
+Après ce commit local, obtenir le premier `crypto_status.json` local du Mini, le copier dans un répertoire temporaire privé de l'Intel, puis exécuter manuellement le consolidateur avec le `stock_status.json` réel. Ne pas créer de ressource cloud, ne pas installer de scheduler et ne pas publier de données réelles avant validation de WebAuthn, redaction, quotas, rétention et accès privé.
 
 ### Reprise utile
 
