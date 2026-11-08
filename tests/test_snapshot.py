@@ -10,6 +10,8 @@ def main():
     assert snapshot["schema_version"] == schema["properties"]["schema_version"]["const"]
     assert snapshot["data_status"] == "DEMO"
     assert set(snapshot["agents"]) == {"stock", "crypto"}
+    assert all("kpis" in agent for agent in snapshot["agents"].values())
+    assert all("pnl_net" in agent["kpis"] and "drawdown" in agent["kpis"] for agent in snapshot["agents"].values())
     assert all(a["environment"] in {"RESEARCH", "SIMULATION", "PAPER", "LIVE", "UNKNOWN"} for a in snapshot["agents"].values())
     datetime.fromisoformat(snapshot["generated_at"].replace("Z", "+00:00"))
     assert snapshot["notice"].startswith("DEMONSTRATION DATA")

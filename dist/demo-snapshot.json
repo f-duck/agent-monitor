@@ -18,7 +18,8 @@
       "memory": "420 MB",
       "disk_free": "36 GB",
       "freshness": "3 min",
-      "alerts": ["Couverture live à mesurer", "Aucun ordre autorisé"]
+      "alerts": ["Couverture live à mesurer", "Aucun ordre autorisé"],
+      "kpis": {"pnl_net": -476, "drawdown": -3.8, "portfolio_value": 50000, "available_budget": 12450, "committed_budget": 37550, "ai_cost": 8.42}
     },
     "crypto": {
       "name": "Agent Crypto",
@@ -33,7 +34,8 @@
       "memory": "680 MB",
       "disk_free": "112 GB",
       "freshness": "38 min",
-      "alerts": ["Snapshot Mini en retard de 8 min"]
+      "alerts": ["Snapshot Mini en retard de 8 min"],
+      "kpis": {"pnl_net": 658, "drawdown": -2.1, "portfolio_value": 20000, "available_budget": 8420, "committed_budget": 11580, "ai_cost": 4.42}
     }
   },
   "metrics": {

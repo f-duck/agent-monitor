@@ -20,13 +20,25 @@
   "$defs": {
     "agent": {
       "type": "object",
-      "required": ["name", "status", "environment", "last_seen_at", "health"],
+      "required": ["name", "status", "environment", "last_seen_at", "health", "kpis"],
       "properties": {
         "name": {"type": "string"},
         "status": {"type": "string", "enum": ["RUNNING", "STALE", "OFFLINE", "UNKNOWN"]},
         "environment": {"type": "string", "enum": ["RESEARCH", "SIMULATION", "PAPER", "LIVE", "UNKNOWN"]},
         "last_seen_at": {"type": ["string", "null"]},
-        "health": {"type": "string"}
+        "health": {"type": "string"},
+        "kpis": {
+          "type": "object",
+          "required": ["pnl_net", "drawdown", "portfolio_value", "available_budget", "committed_budget", "ai_cost"],
+          "properties": {
+            "pnl_net": {"type": ["number", "null"]},
+            "drawdown": {"type": ["number", "null"]},
+            "portfolio_value": {"type": ["number", "null"]},
+            "available_budget": {"type": ["number", "null"]},
+            "committed_budget": {"type": ["number", "null"]},
+            "ai_cost": {"type": ["number", "null"]}
+          }
+        }
       }
     }
   }

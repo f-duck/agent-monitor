@@ -11,6 +11,12 @@ PWA iPhone/Mac --(passkey/WebAuthn, lecture seule)-------------------> cloud API
 
 Le Mini n'héberge pas de serveur permanent et ne contacte pas la PWA. L'Intel est le seul point de consolidation et de publication. La PWA ne contacte jamais directement Alpaca, IBKR, Binance, OpenAI, JEV ou les runtimes.
 
+## Contrat de l'exporteur Mini
+
+L'exporteur Crypto doit être un composant séparé et désactivé par défaut dans la release. Il lit uniquement les métriques déjà produites par le runtime et écrit un unique fichier local `crypto_status.json` (temporaire puis `os.replace`). Le fichier contient `schema_version`, `snapshot_id`, `generated_at`, `source_release`, `environment`, `status`, `freshness`, `health`, `positions`, `decisions`, `orders`, `budget`, `pnl`, `drawdown` et `diagnostics`. Chaque champ absent porte `null` et `UNAVAILABLE` avec une raison.
+
+La cadence de départ est de 30 minutes maximum. L'exporteur ne démarre aucun serveur, ne contacte ni GitHub ni Cloudflare, ne consomme aucun quota IA et ne peut pas appeler d'ordre. Avant activation, mesurer durée, CPU, RSS, I/O et requêtes SQLite sur le Mini ; si le budget de charge ou la lecture échoue, le snapshot devient `STALE`/`UNAVAILABLE` et le runtime continue sans blocage. L'Intel récupère ensuite ce fichier, le valide, l'efface de son workspace temporaire après consolidation et reste l'unique publisher cloud.
+
 ## Snapshot
 
 Le contrat est `schema/snapshot.schema.json`. Une publication remplace l'état courant ; les historiques utiles (transactions, résultats mûrs, incidents) seront traités séparément après validation du stockage. Les valeurs sans preuve sont `null` avec `status: UNAVAILABLE` et une raison.
