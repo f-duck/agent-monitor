@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "snapshot_id": "demo-2026-11-08T21:45:00Z",
+  "generated_at": "2026-11-08T21:45:00Z",
+  "data_status": "DEMO",
+  "notice": "DEMONSTRATION DATA — not a live measurement",
+  "agents": {
+    "stock": {
+      "name": "Agent Stock",
+      "status": "RUNNING",
+      "environment": "RESEARCH",
+      "last_seen_at": "2026-11-08T21:42:00Z",
+      "health": "READ_ONLY / KILL ACTIVE",
+      "machine": "Intel — demonstration",
+      "release": "P17 — demonstration",
+      "alerts": ["Coverage live à mesurer", "Aucun ordre autorisé"]
+    },
+    "crypto": {
+      "name": "Agent Crypto",
+      "status": "UNKNOWN",
+      "environment": "PAPER",
+      "last_seen_at": null,
+      "health": "À synchroniser",
+      "machine": "Mini — non mesuré",
+      "release": "Indisponible",
+      "alerts": ["Donnée non disponible dans la V1 locale"]
+    }
+  },
+  "metrics": {
+    "net_pnl": {"value": null, "unit": "EUR", "status": "UNAVAILABLE", "reason": "Aucun outcome exécutable consolidé"},
+    "drawdown": {"value": null, "unit": "%", "status": "UNAVAILABLE", "reason": "Historique non connecté"},
+    "available_budget": {"value": null, "unit": "EUR", "status": "UNAVAILABLE", "reason": "Aucune source live"},
+    "openai_cost": {"value": null, "unit": "EUR", "status": "UNAVAILABLE", "reason": "Ledger non connecté"}
+  },
+  "decisions": [],
+  "orders": [],
+  "positions": [],
+  "alerts": [
+    {"severity": "INFO", "title": "Mode démonstration", "detail": "Les chiffres réels ne sont pas encore branchés."},
+    {"severity": "GUARDRAIL", "title": "Lecture seule", "detail": "Aucune action de trading ou de runtime n'est disponible."}
+  ],
+  "work": {
+    "project": "Agent Monitor",
+    "phase": "V1 locale",
+    "roadmap": ["V1 interface + schéma + tests", "Mesurer l'extraction Mini", "Valider droits et quotas cloud", "Exporteurs lecture seule"]
+  }
+}

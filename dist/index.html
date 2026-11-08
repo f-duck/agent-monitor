@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#09111f">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <title>Agent Monitor</title>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div><p class="eyebrow">PRIVATE OPERATIONS VIEW</p><h1>Agent Monitor</h1><p class="muted">Supervision Stock · Crypto · lecture seule</p></div>
+      <div class="session"><span class="lock">⌁</span><span>Passkey à activer<br><small>session locale</small></span></div>
+    </header>
+    <section class="demo-banner"><strong>MODE DÉMONSTRATION</strong><span>Les données affichées sont fictives et ne représentent pas l'état réel des agents.</span></section>
+    <nav class="tabs" aria-label="Sections"><button class="active" data-panel="overview">Vue globale</button><button data-panel="activity">Activité</button><button data-panel="health">Santé &amp; machines</button><button data-panel="work">Chantiers</button></nav>
+    <section id="overview" class="panel active">
+      <div class="hero-row"><div><p class="eyebrow">SYNCHRONISATION</p><h2>Vue opérationnelle</h2><p class="muted">Dernier snapshot : <span id="snapshot-time">—</span></p></div><span class="pill demo">DEMO</span></div>
+      <div class="agent-grid" id="agents"></div>
+      <div class="metric-grid" id="metrics"></div>
+      <div class="section-head"><h3>Alertes et garde-fous</h3><span class="muted">Aucune action disponible</span></div><div id="alerts" class="list"></div>
+    </section>
+    <section id="activity" class="panel"><div class="section-head"><div><p class="eyebrow">TRAÇABILITÉ</p><h2>Décisions, ordres, exécutions</h2></div><span class="pill neutral">READ ONLY</span></div><div class="empty"><span>◌</span><h3>Aucune donnée réelle connectée</h3><p>Les signaux, ordres et exécutions apparaîtront ici avec leur environnement et leur source. Aucun chiffre ne sera inventé.</p></div></section>
+    <section id="health" class="panel"><div class="section-head"><div><p class="eyebrow">INFRASTRUCTURE</p><h2>Santé des machines</h2></div></div><div class="health-grid"><article><span class="machine-icon">⌘</span><h3>Intel</h3><p class="muted">État partagé à synchroniser</p><span class="pill neutral">UNAVAILABLE</span></article><article><span class="machine-icon">◈</span><h3>Mac Mini</h3><p class="muted">Mesure d'impact exporteur requise</p><span class="pill neutral">UNAVAILABLE</span></article></div></section>
+    <section id="work" class="panel"><div class="section-head"><div><p class="eyebrow">DELIVERY</p><h2>Chantiers &amp; roadmap</h2></div></div><div id="roadmap" class="roadmap"></div></section>
+    <footer><span>Agent Monitor · V1 locale</span><span>Secrets absents · mutations désactivées</span></footer>
+  </main>
+  <script src="app.js" type="module"></script>
+</body>
+</html>

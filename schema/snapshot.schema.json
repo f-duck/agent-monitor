@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent Monitor consolidated snapshot",
+  "type": "object",
+  "required": ["schema_version", "snapshot_id", "generated_at", "data_status", "agents"],
+  "properties": {
+    "schema_version": {"type": "string", "const": "1.0"},
+    "snapshot_id": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "data_status": {"type": "string", "enum": ["DEMO", "LIVE_READ_ONLY", "STALE", "UNAVAILABLE"]},
+    "agents": {
+      "type": "object",
+      "required": ["stock", "crypto"],
+      "properties": {
+        "stock": {"$ref": "#/$defs/agent"},
+        "crypto": {"$ref": "#/$defs/agent"}
+      }
+    }
+  },
+  "$defs": {
+    "agent": {
+      "type": "object",
+      "required": ["name", "status", "environment", "last_seen_at", "health"],
+      "properties": {
+        "name": {"type": "string"},
+        "status": {"type": "string", "enum": ["RUNNING", "STALE", "OFFLINE", "UNKNOWN"]},
+        "environment": {"type": "string", "enum": ["RESEARCH", "SIMULATION", "PAPER", "LIVE", "UNKNOWN"]},
+        "last_seen_at": {"type": ["string", "null"]},
+        "health": {"type": "string"}
+      }
+    }
+  }
+}
